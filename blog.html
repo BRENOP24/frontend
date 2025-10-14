@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Comidas Brasileiras</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-blog.css">
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+<body>
+    <!-- WIDGET DO CHATBOT - Adicionar antes do </body> em todas as páginas -->
+
+    <!-- Botão Flutuante do Chat -->
+    <div class="chat-widget">
+        <div class="chat-button" id="chatButton">
+            <svg class="chat-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+        </svg>
+            <svg class="close-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+            <span class="chat-badge" id="chatBadge">1</span>
+        </div>
+
+        <!-- Janela do Chat -->
+        <div class="chat-window" id="chatWindow">
+            <!-- Header do Chat -->
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <img src="https://i.pinimg.com/1200x/de/85/32/de853292fa6e014300869204ae9ccd64.jpg" width="200" alt="Assistente">
+                </div>
+                <div class="chat-info">
+                    <h4>BRENO FOOD</h4>
+                    <span class="chat-status online">Online agora</span>
+                </div>
+                <div class="chat-actions">
+                    <button class="minimize-btn" id="minimizeChat">−</button>
+                    <button class="close-chat-btn" id="closeChatBtn">×</button>
+                </div>
+            </div>
+
+            <!-- Área de Mensagens -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <img src="https://i.pinimg.com/736x/91/e6/7a/91e67a5952d28461d3f5335b249cdb54.jpg" width="200" alt="Bot">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou o assistente virtual da [NOME DO NEGÓCIO]. Como posso ajudá-lo hoje?</p>
+                        <span class="message-time">Agora</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sugestões Rápidas -->
+            <div class="quick-suggestions" id="quickSuggestions">
+                <button class="suggestion-btn" data-suggestion="horarios">📅 Horários</button>
+                <button class="suggestion-btn" data-suggestion="servicos">💼 Serviços</button>
+                <button class="suggestion-btn" data-suggestion="contato">📞 Contato</button>
+                <button class="suggestion-btn" data-suggestion="localizacao">📍 Localização</button>
+            </div>
+
+            <!-- Área de Input -->
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Digite sua mensagem..." maxlength="500">
+                    <button class="send-btn" id="sendBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+                </div>
+                <div class="chat-footer">
+                    <span class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <span></span><span></span><span></span> Digitando...
+                    </span>
+                    <button class="whatsapp-btn" id="whatsappBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.53 3.488"/>
+                    </svg>
+                    Continuar no WhatsApp
+                </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificação de Nova Mensagem -->
+        <div class="chat-notification" id="chatNotification" style="display: none;">
+            <div class="notification-content">
+                <strong>Nova mensagem!</strong>
+                <p>O assistente respondeu sua pergunta</p>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="caixa">
+            <h1><img src="https://i.pinimg.com/736x/33/f8/e0/33f8e0e9d8862c6beafd3f3458c4f980.jpg" width="350" alt="logo"></h1>
+            <nav>
+                <ul>
+                    <li><a href="galeriaindex.html">Inicio</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section do Blog -->
+        <section class="blog-hero">
+            <div class="hero-content">
+                <h1>Nosso Blog - Comidas do Momento</h1>
+                <p>Fique por dentro das novidades e tendências no mundo da comida</p>
+            </div>
+        </section>
+
+        <!-- Barra de Pesquisa e Filtros -->
+        <section class="blog-controles">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Pesquisar artigos..." class="search-input">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <div class="filtros-blog">
+                <button class="filtro-blog ativo" data-categoria="todas">Todas</button>
+                <button class="filtro-blog" data-categoria="fastfood">Os Famosos</button>
+                <button class="filtro-blog" data-categoria="novidades">Ideias</button>
+                <button class="filtro-blog" data-categoria="tutoriais">Tutoriais</button>
+            </div>
+        </section>
+
+        <!-- Grade de Artigos -->
+        <section class="blog-grid">
+            <!-- Artigo em Destaque -->
+            <article class="artigo-destaque" data-categoria="fastfood">
+                <div class="artigo-imagem">
+                    <img src="https://i.pinimg.com/736x/31/4d/d9/314dd98d1b07f683ee2ad29eb9520873.jpg" width="200" alt="coxinha">
+                    <span class="artigo-tag">Em Destaque</span>
+                </div>
+                <div class="artigo-conteudo">
+                    <div class="artigo-meta">
+                        <span class="categoria">FastFood</span>
+                        <span class="data">29 Setembro 2025</span>
+                        <span class="tempo-leitura">5 min</span>
+                    </div>
+                    <h2>O Banquete Pop: Por Que Somos Obcecados pelos Queridinhos do Fast Food</h2>
+                    <p>O Fast Food como Ícone Pop Os combos de fast food hoje são tratados como lançamentos de moda ou de música: Colaborações de Celebridades: As marcas usam estrelas de K-Pop a rappers famosos para vender um "combo exclusivo", transformando
+                        um sanduíche em item de colecionador. A "Culpa" e a Indulgência: O fast food é a nossa pequena rebeldia. Em um mundo obcecado por saúde e bem-estar, devorar um combo triplo é um ato de indulgência, um prazer culposo que, quando
+                        compartilhado nas redes, gera identificação e engajamento. O apelo do fast food também reside na psicologia da indulgência . Vivemos em um mundo cada vez mais obcecados por dietas, saúde e bem-estar, onde cada escolha alimentar
+                        é minuciosamente comprovada. Nesse cenário, o fast food se torna a nossa pequena e deliciosa rebeldia. Devorar um combo triplo, batatas crocantes e um refrigerante gelado é um ato de indulgência , um prazer culposo que é quase
+                        catártico. Não é uma refeição que faz todos os dias; é o que fazemos quando decidimos quebrar as regras e nos permitir um momento de felicidade instantânea. E o que acontece depois? Essa experiência é compartilhada. Postar uma
+                        foto de um lanche gigante no Instagram ou TikTok não é apenas mostrar o que você está comendo – é um ato de identificação social e engajamento . A legenda muitas vezes brinca com a "culpa", mas o verdadeiro significado é: "Eu mereço
+                        isso. Você também." Esse prazer compartilhado cria uma conexão instantânea com a audiência, garantindo que o fast food continue relevante, divertido e, acima de tudo, um interesse da cultura pop.</p>
+                    <div class="artigo-autor">
+                        <img src="https://i.pinimg.com/736x/87/e8/8b/87e88b268a373713ff6dfc6b4b95c7e9.jpg" alt="Autor">
+                        <div>
+                            <span class="autor-nome">BRENO PAZ</span>
+                            <span class="autor-cargo"></span>
+                        </div>
+                    </div>
+                    <button class="btn-ler-mais">Ler Mais</button>
+                </div>
+            </article>
+
+            <!-- Container dos Artigos Normais -->
+            <div class="artigos-container">
+                <!-- Artigo 2 -->
+                <article class="artigo-card" data-categoria="fastfood">
+                    <div class="artigo-imagem">
+                        <img src="https://i.pinimg.com/736x/91/7d/5d/917d5d1b174e70971b9aa61969cbebb0.jpg" width="200" alt="coxinha">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Fast Food</span>
+                            <span class="data">29 Setembro 2025</span>
+                            <span class="tempo-leitura">3 min</span>
+                        </div>
+                        <h3>Por Que a Coxinha é a Rainha Incontestável do Fast Food Brasileiro</h3>
+                        <p>A Perfeição da Engenharia Culinária A coxinha não é apenas saborosa; ela é uma obra-prima de engenharia: A Textura: O contraste é o segredo. Por fora, a casquinha é perfeitamente crocante (aquelas migalhas que você adora encontrar
+                            no fundo da embalagem). Por dentro, a massa é macia e aveludada, e o recheio de frango desfiado é temperado no ponto. O Formato: O formato cônico (que lembra uma coxa de frango) não é por acaso. Ele permite que a massa envolva
+                            o recheio de forma uniforme e garante que cada mordida seja uma combinação perfeita de casca, massa e recheio. De Festa de Aniversário a Fenômeno de Meme A coxinha está em todos os lugares importantes da vida do brasileiro,
+                            o que a torna um elemento fortíssimo de memória afetiva e, consequentemente, de cultura pop: O Pilar da Festa: Ela é a estrela inquestionável de qualquer mesa de salgados de festa de aniversário, ao lado do brigadeiro. Sem
+                            coxinha, não há festa. Cultura de Meme: A obsessão é tão grande que a coxinha virou meme na internet. Brincadeiras sobre a "coxinha de jaca", "coxinha vegana" ou o debate sobre qual é o melhor recheio (só frango ou frango com
+                            catupiry?) geram engajamento instantâneo. Ela é um tópico de conversa que une o país.</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <!-- Artigo 3 -->
+                <article class="artigo-card" data-categoria="fastfood">
+                    <div class="artigo-imagem">
+                        <img src="https://i.pinimg.com/1200x/b1/4e/96/b14e967be4d2d4d121ec19d6de13ea7c.jpg" alt="pizza">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Fast Food</span>
+                            <span class="data">29 Setembro 2025</span>
+                            <span class="tempo-leitura">7 min</span>
+                        </div>
+                        <h3>O Mito da Redonda: Por Que a Pizza Domina o Universo </h3>
+                        <p>O Poder da Versatilidade (e da Discórdia) A pizza é o camaleão da gastronomia, e é essa versatilidade que a torna um fenômeno pop: Comunidade: Ela é a escolha padrão para qualquer reunião social. Você não pede pizza para comer
+                            sozinho; você pede para compartilhar com a família ou amigos em uma maratona de séries, fazendo dela a "comida de squad". O Debate Infinito: O que gera mais engajamento do que um bom debate? A pizza provoca discussões acaloradas
+                            que viralizam: Abacaxi na Pizza? O eterno vilão (ou herói) da pizza Havaiana. Borda Recheada: Indispensável ou uma invenção desnecessária? Comer com Mão ou Garfo? Uma questão de etiqueta que separa culturas.</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <!-- Artigo 4 -->
+                <article class="artigo-card" data-categoria="novidades">
+                    <div class="artigo-imagem">
+                        <img src="https://i.pinimg.com/736x/c1/85/e0/c185e0d8a5b1b22046414a537b2c0dd2.jpg" alt="novidades">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Novidades</span>
+                            <span class="data">1 Setembro 2025</span>
+                            <span class="tempo-leitura">4 min</span>
+                        </div>
+                        <h3>Química Perfeita: Por Que o Combo de Hambúrguer e Batata Frita é o Casal de Ouro</h3>
+                        <p>O segredo do combo não está em um único item, mas na oposição sensorial que ele oferece: O Hambúrguer (A Indulgência): É a estrela pesada, quente e saborosa. A combinação do salgado da carne, a untuosidade do queijo e a doçura
+                            do pão e do molho atinge todos os receptores de prazer do cérebro. A Batata Frita (O Complemento Crocante): Ela oferece o contraste de textura e temperatura. A batata é salgada, crocante e funciona como um "limpador de paladar"
+                            rápido. Depois de uma mordida suculenta no hambúrguer, você precisa da batata para redefinir o sabor e te preparar para a próxima mordida, criando um ciclo viciante de consumo.</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <!-- Artigo 5 -->
+                <article class="artigo-card" data-categoria="novidades">
+                    <div class="artigo-imagem">
+                        <img src="https://i.pinimg.com/736x/99/82/1c/99821c28b1d4df200ce7add707187fc4.jpg" width="500" alt="cone doce">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Novidades</span>
+                            <span class="data">4 Setembro 2025</span>
+                            <span class="tempo-leitura">3 min</span>
+                        </div>
+                        <h3>A Tentação Crocante: O Cone Recheado que Virou Febre</h3>
+                        <p>O que torna o cone recheado tão viciante? É a promessa cumprida a cada mordida: A Crocância Perfeita: Começa com a casquinha, quebrando-se suavemente para revelar o tesouro interior. O banho extra de chocolate por fora intensifica
+                            essa crocância e o sabor. A Explosão de Recheio: E então, a recompensa: a cremosidade irresistível da Nutella (ou brigadeiro, ou doce de leite) que se mistura com a acidez e frescor do morango. Esse contraste de texturas e
+                            sabores – o doce intenso do chocolate com a leveza da fruta – é a chave para o sucesso. A Surpresa: Cada mordida é uma pequena descoberta, um pedacinho do paraíso que faz você querer mais e mais.</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <!-- Artigo 6 -->
+                <article class="artigo-card" data-categoria="tutoriais">
+                    <div class="artigo-imagem">
+                        <img src="https://i.pinimg.com/1200x/9f/39/8a/9f398aeee0cceb5c5bbf6198ee54cef6.jpg" alt="doce pao de mel">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Novidades</span>
+                            <span class="data">01 Setembro 2025</span>
+                            <span class="tempo-leitura">8 min</span>
+                        </div>
+                        <h3>O Paraíso em Uma Mordida: Descubra o Nosso Alfajor de Chocolate</h3>
+                        <p>A Massa: Começamos com dois bolinhos (ou biscoitos) de chocolate escuro , macio, que derrete na boca e oferece uma base perfeita e levemente amarga. O Recheio: No coração, a estrela: uma generosa camada de doce de leite cremoso
+                            , cozido lentamente à perfeição, com aquele sabor de caramelo rico e inconfundível. É a doçura na medida certa que equilibra o cacau. A Cobertura: E para selar essa obra-prima, uma densa camada de chocolate ao leite (ou meio
+                            amargo, você escolhe!), finalizada com uma garoa elegante que convida ao primeiro toque.</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Paginação -->
+        <div class="paginacao">
+            <button class="page-btn" data-page="prev">← Anterior</button>
+            <button class="page-btn active" data-page="1">1</button>
+            <button class="page-btn" data-page="2">2</button>
+            <button class="page-btn" data-page="3">3</button>
+            <button class="page-btn" data-page="next">Próximo →</button>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter-section">
+            <div class="newsletter-content">
+                <h3>Assine Nossa Newsletter</h3>
+                <p>Receba os melhores artigos diretamente no seu email</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu melhor email" required>
+                    <button type="submit">Assinar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="imagens/logo-branco.png" alt="Logo [SEU NEGÓCIO]">
+        <p class="copyright">&copy; Copyright [SEU NEGÓCIO] - 2024</p>
+    </footer>
+
+    <!-- JavaScript do Blog -->
+    <script>
+        // Filtros do Blog
+        const filtrosBlog = document.querySelectorAll('.filtro-blog');
+        const artigos = document.querySelectorAll('.artigo-card, .artigo-destaque');
+
+        filtrosBlog.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filtrosBlog.forEach(f => f.classList.remove('ativo'));
+                this.classList.add('ativo');
+
+                const categoria = this.getAttribute('data-categoria');
+
+                artigos.forEach(artigo => {
+                    if (categoria === 'todas' || artigo.getAttribute('data-categoria') === categoria) {
+                        artigo.style.display = 'block';
+                        artigo.style.animation = 'fadeIn 0.5s';
+                    } else {
+                        artigo.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Pesquisa
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.querySelector('.search-btn');
+
+        function pesquisarArtigos() {
+            const termo = searchInput.value.toLowerCase();
+
+            artigos.forEach(artigo => {
+                const titulo = artigo.querySelector('h2, h3').textContent.toLowerCase();
+                const resumo = artigo.querySelector('p').textContent.toLowerCase();
+
+                if (titulo.includes(termo) || resumo.includes(termo) || termo === '') {
+                    artigo.style.display = 'block';
+                } else {
+                    artigo.style.display = 'none';
+                }
+            });
+        }
+
+        searchInput.addEventListener('input', pesquisarArtigos);
+        searchBtn.addEventListener('click', pesquisarArtigos);
+
+        // Paginação
+        const pageBtns = document.querySelectorAll('.page-btn');
+
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.classList.contains('active')) {
+                    pageBtns.forEach(p => p.classList.remove('active'));
+                    if (this.getAttribute('data-page') !== 'prev' && this.getAttribute('data-page') !== 'next') {
+                        this.classList.add('active');
+                    }
+
+                    // Simula carregamento de nova página
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Newsletter
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert('Obrigado! Email ' + email + ' cadastrado com sucesso!');
+            this.reset();
+        });
+
+        // Animação de entrada
+        const observador = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease forwards';
+                }
+            });
+        });
+
+        document.querySelectorAll('.artigo-card').forEach(card => {
+            observador.observe(card);
+        });
+    </script>
+    <script src="dark_mode.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

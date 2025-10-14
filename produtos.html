@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breno Food - Cardápio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+
+<body>
+    <!-- WIDGET DO CHATBOT - Adicionar antes do </body> em todas as páginas -->
+
+    <!-- Botão Flutuante do Chat -->
+    <div class="chat-widget">
+        <div class="chat-button" id="chatButton">
+            <svg class="chat-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+        </svg>
+            <svg class="close-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+            <span class="chat-badge" id="chatBadge">1</span>
+        </div>
+
+        <!-- Janela do Chat -->
+        <div class="chat-window" id="chatWindow">
+            <!-- Header do Chat -->
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <img src="https://i.pinimg.com/1200x/de/85/32/de853292fa6e014300869204ae9ccd64.jpg" width="200" alt="Assistente">
+                </div>
+                <div class="chat-info">
+                    <h4>BRENO FOOD</h4>
+                    <span class="chat-status online">Online agora</span>
+                </div>
+                <div class="chat-actions">
+                    <button class="minimize-btn" id="minimizeChat">−</button>
+                    <button class="close-chat-btn" id="closeChatBtn">×</button>
+                </div>
+            </div>
+
+            <!-- Área de Mensagens -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <img src="https://i.pinimg.com/736x/91/e6/7a/91e67a5952d28461d3f5335b249cdb54.jpg" width="200" alt="Bot">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou o assistente virtual da BRENO FOOD. Como posso ajudá-lo hoje?</p>
+                        <span class="message-time">Agora</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sugestões Rápidas -->
+            <div class="quick-suggestions" id="quickSuggestions">
+                <button class="suggestion-btn" data-suggestion="horarios">📅 Horários</button>
+                <button class="suggestion-btn" data-suggestion="servicos">💼 Serviços</button>
+                <button class="suggestion-btn" data-suggestion="contato">📞 Contato</button>
+                <button class="suggestion-btn" data-suggestion="localizacao">📍 Localização</button>
+            </div>
+
+            <!-- Área de Input -->
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Digite sua mensagem..." maxlength="500">
+                    <button class="send-btn" id="sendBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+                </div>
+                <div class="chat-footer">
+                    <span class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <span></span><span></span><span></span> Digitando...
+                    </span>
+                    <button class="whatsapp-btn" id="whatsappBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.53 3.488"/>
+                    </svg>
+                    Continuar no WhatsApp
+                </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificação de Nova Mensagem -->
+        <div class="chat-notification" id="chatNotification" style="display: none;">
+            <div class="notification-content">
+                <strong>Nova mensagem!</strong>
+                <p>O assistente respondeu sua pergunta</p>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="container">
+            <nav>
+                <h1 class="logo">Breno Food</h1>
+                <ul>
+                    <li><a href="galeriaindex.html">Início</a></li>
+                    <li><a href="galeria.html">Galeria de produtos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="cardapio">
+            <div class="container">
+                <h2 class="titulo-secao">Escolha o seu preferido!</h2>
+
+                <section class="categoria-pratos">
+                    <h3>Combos Especiais</h3>
+                    <ul class="lista-itens">
+                        <li data-nome="Combo Família" data-preco="99.90">
+                            <img src="https://i.pinimg.com/736x/86/81/a5/8681a54e7d70a9ed1a9a79ee98f61c7c.jpg" width="600" alt="4 hamburguers e porção de cheedar">
+                            <h4>Combo Família</h4>
+                            <p>Combo perfeito, 4 hamburguers com cheedar e porção de batata</p>
+                            <span class="preco">R$ 99,90</span>
+                            <div class="quantidade-selector">
+                                <button class="btn-subtrair">-</button>
+                                <input type="number" class="quantidade" value="0" min="0" readonly>
+                                <button class="btn-somar">+</button>
+                            </div>
+                        </li>
+                        <li data-nome="Combo Casal" data-preco="75.50">
+                            <img src="https://i.pinimg.com/736x/6d/51/6c/6d516c72290b638eca8e509f6551b58e.jpg" width="600" alt="2 cocas latas e 4 hamburguers duplos com cheedar">
+                            <h4>Combo Casal</h4>
+                            <p>Quatro Hamburguers duplos com cheedar + duas cocas latas. Perfeito para um jantar a dois.</p>
+                            <span class="preco">R$ 75,50</span>
+                            <div class="quantidade-selector">
+                                <button class="btn-subtrair">-</button>
+                                <input type="number" class="quantidade" value="0" min="0" readonly>
+                                <button class="btn-somar">+</button>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="categoria-pratos">
+                    <h3>Individuais</h3>
+                    <ul class="lista-itens">
+                        <li data-nome="Individual para matar a fome" data-preco="30.00">
+                            <img src="https://i.pinimg.com/736x/22/f1/b8/22f1b876ce50c85325cae1271f7d6428.jpg" width="600" alt="porçao de batata, um hamburguer simples, uma coca zero lata">
+                            <h4>Individual para matar a fome</h4>
+                            <p>Um Hamburguer simples, porção de batata e uma coca zero</p>
+                            <span class="preco">R$ 30,00</span>
+                            <div class="quantidade-selector">
+                                <button class="btn-subtrair">-</button>
+                                <input type="number" class="quantidade" value="0" min="0" readonly>
+                                <button class="btn-somar">+</button>
+                            </div>
+                        </li>
+                        <li data-nome="Porção Batata Frita" data-preco="38.90">
+                            <img src="https://i.pinimg.com/736x/66/99/c5/6699c59deb6ef08ef0ddbd28dd60a98f.jpg" width="600" alt="Porçao batata frita">
+                            <h4>Porção Batata Frita</h4>
+                            <p>Porção de batata frita média.</p>
+                            <span class="preco">R$ 38,90</span>
+                            <div class="quantidade-selector">
+                                <button class="btn-subtrair">-</button>
+                                <input type="number" class="quantidade" value="0" min="0" readonly>
+                                <button class="btn-somar">+</button>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="categoria-pratos">
+                    <h3>Pizzas</h3>
+                    <ul class="lista-itens">
+                        <li data-nome="Pizzas" data-preco="45.00">
+                            <img src="https://i.pinimg.com/1200x/6a/88/32/6a8832d29a911b320f9c68af86f8e134.jpg" width="600" alt="pizza calabresa">
+                            <h4>Pizza</h4>
+                            <p>Pizza Calabresa Media - 6 pedaços</p>
+                            <span class="preco">R$ 45,00</span>
+                            <div class="quantidade-selector">
+                                <button class="btn-subtrair">-</button>
+                                <input type="number" class="quantidade" value="0" min="0" readonly>
+                                <button class="btn-somar">+</button>
+
+                                <li data-nome="Pizzas" data-preco="50.00">
+                                    <img src="https://i.pinimg.com/1200x/c2/d7/96/c2d796fa468a0c477491f08f030c764f.jpg" width="600" alt="pizza sensação">
+                                    <h4>Pizza doce</h4>
+                                    <p>Pizza Doce Sensação</p>
+                                    <span class="preco">R$ 50,00</span>
+                                    <div class="quantidade-selector">
+                                        <button class="btn-subtrair">-</button>
+                                        <input type="number" class="quantidade" value="0" min="0" readonly>
+                                        <button class="btn-somar">+</button>
+                                    </div>
+                                </li>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                </ul>
+        </section>
+
+        ...
+        <div class="finalizar-pedido">
+            <div class="informacoes-cliente">
+                <label for="nome-cliente">Faça seu pedido aqui!!</label>
+                <label for="nome-cliente">Seu nome:</label>
+                <input type="text" id="nome-cliente" placeholder="Digite seu nome completo">
+
+                <label for="endereco-cliente">Endereço de entrega:</label>
+                <input type="text" id="endereco-cliente" placeholder="Rua, número, bairro, complemento">
+            </div>
+
+            <button id="btn-finalizar-pedido" class="btn-cardapio">Finalizar Pedido</button>
+            <p id="total-pedido">Total: R$ 0,00</p>
+        </div>
+        ...
+
+        </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SistemasBPC. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="dark_mode.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

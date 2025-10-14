@@ -1,0 +1,1683 @@
+/* RESET BÁSICO */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #d6f9f6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+}
+
+
+/* HEADER - CABEÇALHO E NAVEGAÇÃO */
+
+header {
+    background: #fff;
+    color: #333;
+    padding: 1rem 0;
+    border-bottom: #ccc 1px solid;
+    position: sticky;
+    /* Mantém o menu no topo da tela ao rolar */
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1.logo {
+    font-size: 1.5rem;
+    color: #cf1616;
+    font-weight: bold;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+}
+
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a {
+    color: #3ed813;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header ul li a:hover {
+    color: #4784ff;
+    /* Cor de destaque ao passar o mouse */
+}
+
+
+/* BANNER PRINCIPAL */
+
+.banner-principal {
+    position: relative;
+    height: 400px;
+    /* Altura da imagem */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.banner-principal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+/* Filtros da Galeria */
+
+.filtros-galeria {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 12px 28px;
+    background: #fff;
+    border: 2px solid #dee2e6;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filtro-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filtro-btn.ativo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+
+/* Grid de Galeria com CSS Grid Avançado */
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+
+/* Item grande ocupa 2 colunas e 2 linhas */
+
+.galeria-item-grande {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+
+/* Items da Galeria */
+
+.galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background: #f8f9fa;
+    transition: transform 0.3s ease;
+}
+
+.galeria-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.galeria-item:hover img {
+    transform: scale(1.1);
+}
+
+
+/* Overlay com Glassmorphism */
+
+.galeria-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%);
+    backdrop-filter: blur(5px);
+    color: white;
+    padding: 30px 20px 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.galeria-item:hover .galeria-overlay {
+    transform: translateY(0);
+}
+
+.galeria-overlay h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.galeria-overlay p {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.btn-ver-mais {
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-ver-mais:hover {
+    background: white;
+    color: #333;
+    transform: translateX(5px);
+}
+
+
+/* Modal/Lightbox Moderno */
+
+.modal-galeria {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+.modal-conteudo {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 70vh;
+    margin-top: 5vh;
+    border-radius: 10px;
+    animation: zoomIn 0.3s;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+.modal-caption {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.modal-caption h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.modal-caption p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fechar-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+
+/* Navegação do Modal */
+
+.modal-navegacao {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.nav-btn {
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Seção de Estatísticas com Contadores Animados */
+
+.estatisticas {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 80px 20px;
+    margin-top: 60px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.estatisticas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    pointer-events: none;
+}
+
+.estatisticas h3 {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    font-weight: bold;
+    position: relative;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.stat-numero {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* Animações */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Responsividade da Galeria */
+
+@media (max-width: 768px) {
+    .galeria-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    .galeria-item-grande {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .modal-conteudo {
+        max-width: 95%;
+        max-height: 60vh;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .stat-numero {
+        font-size: 2em;
+    }
+    .filtros-galeria {
+        padding: 0 10px;
+    }
+    .filtro-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-navegacao {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .estatisticas {
+        padding: 40px 15px;
+    }
+}
+
+
+/* --- Estilos Gerais da Seção FAQ --- */
+
+.faq-section {
+    padding: 60px 20px;
+    background-color: #33c0e3;
+    /* Cor de fundo suave */
+    text-align: center;
+    /* Centraliza o título */
+}
+
+.titulo-centralizado {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+
+/* --- Container e Itens do FAQ --- */
+
+.faq-container {
+    max-width: 800px;
+    /* Limita a largura para melhor leitura */
+    margin: 0 auto;
+    /* Centraliza o container */
+    text-align: left;
+    /* Alinha o conteúdo interno à esquerda */
+}
+
+.faq-item {
+    border: 1px solid #51e65e96;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Importante para a animação da resposta */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+}
+
+
+/* --- Estilo da Pergunta (Label) --- */
+
+.faq-pergunta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    cursor: pointer;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #dc0d0d;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    /* Impede a seleção do texto */
+}
+
+.faq-pergunta:hover {
+    background-color: #f0f0f0;
+}
+
+.faq-pergunta span {
+    max-width: 90%;
+    /* Reserva espaço para o ícone */
+}
+
+
+/* --- Ícone de Toggle (o '+' / '-') --- */
+
+.faq-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    stroke: #a6c4e4;
+    /* Cor do ícone (Pode ser sua cor principal) */
+    min-width: 24px;
+    /* Garante que o ícone mantenha o tamanho */
+}
+
+
+/* --- Checkbox e o Segredo do Acordeão CSS --- */
+
+.faq-toggle {
+    display: none;
+    /* Esconde o input checkbox */
+}
+
+
+/* Quando o checkbox está CHECADO, muda o estilo da pergunta e do ícone */
+
+.faq-toggle:checked+.faq-pergunta {
+    background-color: #e9f5ff;
+    /* Fundo diferente para a pergunta ativa */
+    color: #007bff;
+    /* Cor do texto da pergunta ativa */
+    border-bottom: 1px solid #007bff;
+}
+
+.faq-toggle:checked+.faq-pergunta .faq-icon {
+    /* Rotaciona o '+' em 45 graus, transformando-o em 'x' (ou '-') */
+    transform: rotate(45deg);
+    stroke: #007bff;
+}
+
+
+/* --- Estilo da Resposta --- */
+
+.faq-resposta {
+    /* O truque do acordeão: Altura zero por padrão */
+    max-height: 0;
+    transition: max-height 0.4s ease-out;
+    /* Anima a abertura */
+    background-color: #fff;
+}
+
+.faq-resposta p {
+    padding: 0 25px;
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+    padding-bottom: 20px;
+    /* Adiciona padding na parte de baixo da resposta */
+}
+
+
+/* Quando o checkbox está CHECADO, exibe a resposta */
+
+.faq-toggle:checked~.faq-resposta {
+    /* Define uma altura grande o suficiente para a resposta ser visível */
+    max-height: 500px;
+    /* Ajuste se suas respostas forem muito longas */
+    transition: max-height 0.4s ease-in;
+}
+
+
+/* --- Estilos Opcionais para a Seção Depoimentos (Se precisar) --- */
+
+.depoimentos {
+    padding: 60px 20px;
+    background-color: #35d620;
+    /* Fundo branco ou cor de contraste */
+}
+
+
+/* ========================================= */
+
+
+/* --- Estilos para a Seção de Produtos --- */
+
+
+/* ========================================= */
+
+.secao-produtos {
+    padding: 60px 20px;
+    background-color: #fff;
+    /* Fundo principal */
+    text-align: center;
+}
+
+.secao-produtos .titulo-centralizado {
+    margin-bottom: 50px;
+    color: #333;
+}
+
+
+/* --- Estilos dos Filtros (Botões de Categoria) --- */
+
+.filtros-galeria {
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Garante que os botões quebrem a linha em telas pequenas */
+    justify-content: center;
+    gap: 10px;
+}
+
+.filtro-btn {
+    background-color: #f0f0f0;
+    color: #555;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filtro-btn:hover {
+    background-color: #ddd;
+}
+
+.filtro-btn.ativo {
+    background-color: #ff5722;
+    /* Cor de destaque (laranja/vermelho, como em um restaurante) */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- Estilos da Grid de Produtos --- */
+
+.galeria-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Grid: 1 coluna em mobile, 2 em tablet, 3 em desktop */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+
+/* --- Estilos do Item Individual (Produto) --- */
+
+.galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Garante que a imagem preencha o espaço sem distorcer */
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+
+/* Efeito de Zoom ao passar o mouse */
+
+.galeria-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* --- Estilos do Overlay (Detalhes do Produto) --- */
+
+.galeria-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Fundo escuro semi-transparente */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    /* Esconde o overlay por padrão */
+    transition: opacity 0.4s ease;
+    text-align: center;
+}
+
+.galeria-item:hover .galeria-overlay {
+    opacity: 1;
+    /* Mostra o overlay ao passar o mouse */
+}
+
+.galeria-overlay h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.galeria-overlay p {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.galeria-overlay .preco {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #ffc107;
+    /* Amarelo de destaque para o preço */
+    margin-bottom: 15px;
+}
+
+.btn-ver-mais {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn-ver-mais:hover {
+    background-color: #e64a19;
+}
+
+
+/* Container principal e estilos básicos */
+
+.cardapio-secao {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.cardapio-secao h1 {
+    text-align: center;
+    color: #d9534f;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+
+/* Estilização dos Filtros (Mantida) */
+
+.cardapio-filtros {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.filtro-categoria {
+    background-color: #fff;
+    color: #d9534f;
+    border: 2px solid #d9534f;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filtro-categoria:hover:not(.ativo) {
+    background-color: #f8d7da;
+}
+
+.filtro-categoria.ativo {
+    background-color: #d9534f;
+    color: #fff;
+    border-color: #d9534f;
+}
+
+
+/* SEÇÃO DE CARDÁPIO */
+
+.cardapio {
+    background-color: #3d8bd8;
+    padding: 2rem 0;
+}
+
+
+/* Título de cada categoria */
+
+.cardapio .categoria-pratos h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ff6347;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+
+/* Layout dos itens com Flexbox */
+
+.lista-itens {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que os itens quebrem a linha */
+    justify-content: center;
+    gap: 30px;
+    /* Espaço entre os itens */
+    margin-bottom: 3rem;
+}
+
+.lista-itens li {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    /* Largura fixa para cada item */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lista-itens li:hover {
+    transform: translateY(-10px);
+    /* Efeito "subir" ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lista-itens li img {
+    width: 100%;
+    height: 200px;
+    /* Altura fixa para as imagens */
+    object-fit: cover;
+    /* Garante que a imagem preencha o espaço sem distorcer */
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.lista-itens li h4 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.lista-itens li p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.lista-itens li .preco {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff6347;
+    /* Cor do preço */
+}
+
+
+/* SEPARADOR DE SEÇÕES */
+
+.cardapio .categoria-pratos:not(:last-child) {
+    margin-bottom: 4rem;
+}
+
+
+/* Responsividade para telas menores */
+
+@media (max-width: 768px) {
+    .lista-itens li {
+        width: 100%;
+        /* Em telas pequenas, os itens ocupam a largura total */
+    }
+}
+
+
+/* SELETOR DE QUANTIDADE */
+
+.quantidade-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 5px;
+}
+
+.quantidade-selector button {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.quantidade-selector button:hover {
+    background-color: #e5533d;
+}
+
+.quantidade-selector input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 5px 0;
+}
+
+
+/* BOTÃO E TOTAL DE PEDIDO */
+
+.finalizar-pedido {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+#total-pedido {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6347;
+    margin-top: 15px;
+}
+
+
+/* Estilo para os campos de nome e endereço */
+
+.informacoes-cliente {
+    margin-bottom: 2rem;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.informacoes-cliente label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.informacoes-cliente input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+
+/* ESTILIZAÇÃO DO BOTÃO DO WHATSAPP */
+
+.btn-whatsapp {
+    display: inline-flex;
+    /* Permite alinhar o ícone e o texto */
+    align-items: center;
+    /* Alinha verticalmente */
+    background-color: #25D366;
+    /* Cor oficial do WhatsApp */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    /* Borda arredondada */
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    /* Tom mais escuro no hover */
+}
+
+.btn-whatsapp img {
+    width: 30px;
+    /* **AQUI ESTÁ A MUDANÇA DO TAMANHO DO ÍCONE** */
+    margin-right: 10px;
+    /* Espaço entre o ícone e o texto */
+}
+
+.btn-cardapio {
+    display: inline-block;
+    background: #ff6347;
+    /* Cor do botão */
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn-cardapio:hover {
+    background: #e5533d;
+}
+
+
+/* SEÇÃO DE CONTATO */
+
+.contato {
+    background-color: #09def1;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.contato .titulo-secao {
+    margin-bottom: 1.5rem;
+}
+
+
+/* ESTILIZAÇÃO DAS INFORMAÇÕES DE CONTATO */
+
+.informacoes-contato p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.lista-contato {
+    list-style: none;
+    margin-top: 2rem;
+    display: inline-block;
+    /* Para centralizar a lista */
+    text-align: left;
+    /* Alinha o texto da lista à esquerda */
+}
+
+.lista-contato li {
+    margin-bottom: 10px;
+}
+
+.lista-contato li p strong {
+    color: #333;
+}
+
+
+/* === CHATBOT WIDGET STYLES === */
+
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+
+/* Botão Flutuante do Chat */
+
+.chat-button {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    border: none;
+    overflow: hidden;
+}
+
+.chat-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+.chat-button:active {
+    transform: translateY(-1px);
+}
+
+.chat-button.chat-open {
+    background: linear-gradient(135deg, #ff4757 0%, #c44569 100%);
+}
+
+.chat-icon,
+.close-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+
+/* Badge de Notificação */
+
+.chat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 3px solid white;
+    animation: pulse 2s infinite;
+}
+
+.chat-badge.hidden {
+    display: none;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+
+/* Janela do Chat */
+
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: var(--bg-primary, white);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-color, #e1e5e9);
+    animation: chatSlideUp 0.3s ease;
+}
+
+.chat-window.show {
+    display: flex;
+}
+
+.chat-window.minimized {
+    height: 60px;
+}
+
+.chat-window.minimized .chat-messages,
+.chat-window.minimized .quick-suggestions,
+.chat-window.minimized .chat-input-area {
+    display: none;
+}
+
+@keyframes chatSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Header do Chat */
+
+.chat-header {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.chat-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-info {
+    flex: 1;
+}
+
+.chat-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.chat-status {
+    font-size: 12px;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.chat-status.online::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    51%,
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.chat-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.minimize-btn,
+.close-chat-btn {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.minimize-btn:hover,
+.close-chat-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Área de Mensagens */
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: var(--bg-secondary, #f8f9fa);
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: var(--border-color, #ccc);
+    border-radius: 2px;
+}
+
+
+/* Mensagens */
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    animation: messageSlideIn 0.3s ease;
+}
+
+.message.user-message {
+    flex-direction: row-reverse;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--accent-color, #667eea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.message-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-message .message-avatar {
+    background: var(--success-color, #28a745);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.message-content {
+    max-width: 70%;
+}
+
+.bot-message .message-content {
+    background: white;
+    border-radius: 18px 18px 18px 4px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-message .message-content {
+    background: var(--accent-color, #667eea);
+    color: white;
+    border-radius: 18px 18px 4px 18px;
+    padding: 12px 16px;
+}
+
+.message-content p {
+    margin: 0;
+    line-height: 1.4;
+    color: inherit;
+}
+
+.message-time {
+    font-size: 10px;
+    color: var(--text-muted, #999);
+    display: block;
+    margin-top: 4px;
+}
+
+.user-message .message-time {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Sugestões Rápidas */
+
+.quick-suggestions {
+    padding: 15px 20px;
+    background: var(--bg-primary, white);
+    border-top: 1px solid var(--border-color, #e1e5e9);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.suggestion-btn {
+    background: var(--bg-secondary, #f8f9fa);
+    border: 1px solid var(--border-color, #e1e5e9);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary, #666);
+}
+
+.suggestion-btn:hover {
+    background: var(--accent-color, #667eea);
+    color: white;
+    border-color: var(--accent-color, #667eea);
+}
+
+
+/* Área de Input */
+
+.chat-input-area {
+    background: var(--bg-primary, white);
+    border-top: 1px solid var(--border-color, #e1e5e9);
+    padding: 15px 20px;
+}
+
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 25px;
+    padding: 5px;
+    border: 1px solid var(--border-color, #e1e5e9);
+}
+
+#chatInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 14px;
+    color: var(--text-primary, #333);
+}
+
+#chatInput::placeholder {
+    color: var(--text-muted, #999);
+}
+
+.send-btn {
+    width: 35px;
+    height: 35px;
+    background: var(--accent-color, #667eea);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+}
+
+.send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.send-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+
+/* Chat Footer */
+
+.chat-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.typing-indicator {
+    font-size: 12px;
+    color: var(--text-muted, #999);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.typing-indicator span:nth-child(1),
+.typing-indicator span:nth-child(2),
+.typing-indicator span:nth-child(3) {
+    width: 4px;
+    height: 4px;
+    background: var(--text-muted, #999);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* Botão WhatsApp */
+
+.whatsapp-btn {
+    background: #25d366;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.whatsapp-btn:hover {
+    background: #128c7e;
+    transform: translateY(-1px);
+}
+
+.whatsapp-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* Notificação */
+
+.chat-notification {
+    position: absolute;
+    bottom: 85px;
+    right: 70px;
+    background: var(--bg-primary, white);
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color, #e1e5e9);
+    min-width: 200px;
+    animation: notificationSlide 0.3s ease;
+}
+
+@keyframes notificationSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notification-content strong {
+    color: var(--text-primary, #333);
+    font-size: 13px;
+}
+
+.notification-content p {
+    margin: 4px 0 0 0;
+    color: var(--text-secondary, #666);
+    font-size: 12px;
+}
+
+
+/* Dark Mode Support */
+
+[data-theme="dark"] .chat-window {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .chat-messages {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .bot-message .message-content {
+    background: var(--bg-accent);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .chat-notification {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+
+/* Responsividade */
+
+@media (max-width: 480px) {
+    .chat-window {
+        width: calc(100vw - 40px);
+        max-width: 350px;
+    }
+    .chat-widget {
+        bottom: 15px;
+        right: 15px;
+    }
+    .message-content {
+        max-width: 85%;
+    }
+}
+
+
+/* Estados de carregamento */
+
+.loading-message {
+    opacity: 0.7;
+}
+
+.loading-message::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    border: 2px solid #ddd;
+    border-top-color: var(--accent-color, #667eea);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
