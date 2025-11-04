@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Breno Food</title>
+    
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculadora.css">
+    <link rel="stylesheet" href="dark_mode.css">
+    <link rel="stylesheet" href="cookie_consent.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <h1 class="logo">Breno Food</h1>
+            <nav>
+                <ul>
+                    <li><a href="galeriaindex.html">Inicio</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="mapa.html">Localização</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>
+                    <li><a href="agendamento.html">Agendamento</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="titulo-principal-produtos">Calculadora Interativa</h2>
+
+        <div class="tipo-calculadora-selector">
+            <button class="tipo-btn active" data-tipo="imc">Calculadora de IMC</button>
+            <button class="tipo-btn" data-tipo="calorias">Gasto Calórico</button>
+            <button class="tipo-btn" data-tipo="personalizado">Estimativa de Gasto</button>
+        </div>
+
+        <div class="calculadora-container">
+            <div class="calculadora-inputs" id="calculadoraInputs">
+                
+                <div class="calc-section active" data-section="imc">
+                    <h3>Calculadora de IMC (Índice de Massa Corporal)</h3>
+                    <p class="calc-descricao">Descubra se seu peso está adequado para sua altura</p>
+
+                    <div class="input-group">
+                        <label for="peso">Peso (kg)</label>
+                        <input type="number" id="peso" placeholder="Ex: 70" min="20" max="300" step="0.1">
+                        <span class="input-hint">Digite seu peso em quilogramas</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="altura">Altura (cm)</label>
+                        <input type="number" id="altura" placeholder="Ex: 170" min="100" max="250" step="1">
+                        <span class="input-hint">Digite sua altura em centímetros</span>
+                    </div>
+
+                    <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
+                </div>
+
+                <div class="calc-section" data-section="calorias">
+                    <h3>Calculadora de Gasto Calórico</h3>
+                    <p class="calc-descricao">Calcule quantas calorias você gasta por dia</p>
+
+                    <div class="input-group">
+                        <label for="peso-cal">Peso (kg)</label>
+                        <input type="number" id="peso-cal" placeholder="Ex: 70" min="20" max="300" step="0.1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="altura-cal">Altura (cm)</label>
+                        <input type="number" id="altura-cal" placeholder="Ex: 170" min="100" max="250" step="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="idade">Idade (anos)</label>
+                        <input type="number" id="idade" placeholder="Ex: 30" min="10" max="120" step="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo">
+                            <option value="">Selecione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="atividade">Nível de Atividade Física</label>
+                        <select id="atividade">
+                            <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
+                            <option value="1.375">Levemente ativo (1-3 dias/semana)</option>
+                            <option value="1.55" selected>Moderadamente ativo (3-5 dias/semana)</option>
+                            <option value="1.725">Muito ativo (6-7 dias/semana)</option>
+                            <option value="1.9">Extremamente ativo (treino 2x/dia)</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-calcular" onclick="calcularCalorias()">Calcular Calorias</button>
+                </div>
+
+                <div class="calc-section" data-section="personalizado">
+                    <h3>Calculadora de Custo de Refeição (Lanches)</h3>
+                    <p class="calc-descricao">Estime o gasto total do seu pedido no Breno Food.</p>
+
+                    <div class="personalizacao-info">
+                        <h4>Detalhes do Cálculo:</h4>
+                        <p>Esta ferramenta considera o preço do lanche, a quantidade, a taxa de entrega e uma gorjeta opcional.</p>
+                    </div>
+
+                    <div id="calc-personalizada"> 
+                        <h4>Estimativa de Gasto no Pedido</h4> 
+                        
+                        <div class="input-group">
+                            <label for="preco-lanche">Preço Unitário do Lanche (R$)</label>
+                            <input type="number" id="preco-lanche" placeholder="Ex: 25.00" min="0.01" max="1000" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="quantidade-lanche">Quantidade de Lanches</label>
+                            <input type="number" id="quantidade-lanche" placeholder="Ex: 2" min="1" max="50" step="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="taxa-entrega">Taxa de Entrega (R$)</label>
+                            <input type="number" id="taxa-entrega" placeholder="Ex: 5.00 (ou 0)" min="0" max="100" step="0.01">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="gorjeta-perc">Gorjeta (%) - Opcional</label>
+                            <input type="number" id="gorjeta-perc" placeholder="Ex: 10" min="0" max="100" step="1">
+                        </div>
+
+                        <button class="btn-calcular" onclick="calcularGastoLanche()">Calcular Gasto Total</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculadora-resultados" id="calculadoraResultados">
+                <div class="placeholder-resultado">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="calc-icon">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <h3>Aguardando Cálculo</h3>
+                    <p>Preencha os campos e clique em calcular para ver os resultados</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="info-educativa">
+            <h3>Entenda os Cálculos</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">📊</div>
+                    <h4>IMC (Índice de Massa Corporal)</h4>
+                    <p>Fórmula: <strong>IMC = peso ÷ (altura)²</strong></p>
+                    <p>Medida que relaciona peso e altura para avaliar se uma pessoa está no peso ideal.</p>
+                    <ul class="info-list">
+                        <li>Abaixo de 18,5: Abaixo do peso</li>
+                        <li>18,5 - 24,9: Peso normal</li>
+                        <li>25,0 - 29,9: Sobrepeso</li>
+                        <li>30,0+: Obesidade</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🔥</div>
+                    <h4>Taxa Metabólica Basal (TMB)</h4>
+                    <p>Calorias necessárias para manter funções vitais em repouso.</p>
+                    <p><strong>Homens:</strong> 88,362 + (13,397 × peso) + (4,799 × altura) - (5,677 × idade)</p>
+                    <p><strong>Mulheres:</strong> 447,593 + (9,247 × peso) + (3,098 × altura) - (4,330 × idade)</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">💡</div>
+                    <h4>Dicas Importantes</h4>
+                    <ul class="info-list">
+                        <li>Estes cálculos são estimativas gerais</li>
+                        <li>Consulte um profissional para orientação personalizada</li>
+                        <li>Resultados variam conforme metabolismo individual</li>
+                        <li>Use como referência, não diagnóstico</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="historico-calculos">
+            <div class="historico-header">
+                <h3>Histórico de Cálculos</h3>
+                <button class="btn-limpar-historico" onclick="limparHistorico()">Limpar Histórico</button>
+            </div>
+            <div id="historicoLista" class="historico-lista">
+                <p class="historico-vazio">Nenhum cálculo realizado ainda</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SistemasBPC. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="calculadora.js"></script>
+    <script src="dark_mode.js"></script>
+    <script src="analytics_setup.js"></script>
+</body>
+</html>

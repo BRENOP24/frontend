@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="dark_mode.css">
     <link rel="stylesheet" href="chatbot.css">
     <link rel="stylesheet" href="cookie_consent.css">
+    <link rel="stylesheet" href="reset.css">
 
 </head>
+
+
+
+</nav>
 
 <body>
     <!-- WIDGET DO CHATBOT - Adicionar antes do </body> em todas as páginas -->
@@ -52,7 +57,7 @@
                         <img src="https://i.pinimg.com/736x/91/e6/7a/91e67a5952d28461d3f5335b249cdb54.jpg" width="200" alt="Bot">
                     </div>
                     <div class="message-content">
-                        <p>Olá! 👋 Sou o assistente virtual da [NOME DO NEGÓCIO]. Como posso ajudá-lo hoje?</p>
+                        <p>Olá! 👋 Sou o assistente virtual da Breno Food. Como posso ajudá-lo hoje?</p>
                         <span class="message-time">Agora</span>
                     </div>
                 </div>
@@ -100,22 +105,25 @@
     </div>
 
     <section class="secao-produtos">
-        <h2 class="titulo-centralizado">Galeria de imagens</h2>
-
-        <div class="faq-nav-links">
-            <a href="galeriaindex.html" class="btn-faq-nav">
-                <span class="icone">🏠</span> Voltar para Home
-            </a>
-            <a href="produtos.html" class="btn-faq-nav">
-                <span class="icone">🛒</span> Ver Produtos
-            </a>
-
-            <div class="filtros-galeria">
-                <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
-                <button class="filtro-btn" data-filtro="categoria1">COMBOS ESPECIAIS</button>
-                <button class="filtro-btn" data-filtro="categoria2">INDIVIDUAIS</button>
-                <button class="filtro-btn" data-filtro="categoria3">PIZZAS</button>
-            </div>
+        <body>
+            <header>
+                <main>
+                        <div class="boas-vindas">
+                            <h2>Galeria Produtos</h2>
+                        </div>
+                    <main>
+                        <nav>
+                            <ul>
+                                <li><a href="galeriaindex.html">Inicio</a></li>
+                                <li><a href="produtos.html">Produtos</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="mapa.html">Localização</a></li>
+                                <li><a href="contato.html">Contato</a></li>
+                                <li><a href="agendamento.html">Agendamento</a></li>
+                            </ul>
+                        </nav>
+                        </div>
+            </header>
 
             <div class="galeria-grid">
 
@@ -185,5 +193,4 @@
     <script src="chatbot.js"></script>
     <script src="analytics_setup.js"></script>
 </body>
-
 </html>
