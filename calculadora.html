@@ -23,98 +23,18 @@
                     <li><a href="galeriaindex.html">Inicio</a></li>
                     <li><a href="produtos.html">Produtos</a></li>
                     <li><a href="galeria.html">Galeria</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="mapa.html">Localização</a></li>
-                    <li><a href="calculadora.html">Calculadora</a></li>
-                    <li><a href="agendamento.html">Agendamento</a></li>
                     <li><a href="contato.html">Contato</a></li>
-                    
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faqsection.html">Duvidas Frequentes</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="agendamento.html">Agendamento</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>                    
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <h2 class="titulo-principal-produtos">Calculadora Interativa</h2>
-
-        <div class="tipo-calculadora-selector">
-            <button class="tipo-btn active" data-tipo="imc">Calculadora de IMC</button>
-            <button class="tipo-btn" data-tipo="calorias">Gasto Calórico</button>
-            <button class="tipo-btn" data-tipo="personalizado">Estimativa de Gasto</button>
-        </div>
-
-        <div class="calculadora-container">
-            <div class="calculadora-inputs" id="calculadoraInputs">
-                
-                <div class="calc-section active" data-section="imc">
-                    <h3>Calculadora de IMC (Índice de Massa Corporal)</h3>
-                    <p class="calc-descricao">Descubra se seu peso está adequado para sua altura</p>
-
-                    <div class="input-group">
-                        <label for="peso">Peso (kg)</label>
-                        <input type="number" id="peso" placeholder="Ex: 70" min="20" max="300" step="0.1">
-                        <span class="input-hint">Digite seu peso em quilogramas</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="altura">Altura (cm)</label>
-                        <input type="number" id="altura" placeholder="Ex: 170" min="100" max="250" step="1">
-                        <span class="input-hint">Digite sua altura em centímetros</span>
-                    </div>
-
-                    <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
-                </div>
-
-                <div class="calc-section" data-section="calorias">
-                    <h3>Calculadora de Gasto Calórico</h3>
-                    <p class="calc-descricao">Calcule quantas calorias você gasta por dia</p>
-
-                    <div class="input-group">
-                        <label for="peso-cal">Peso (kg)</label>
-                        <input type="number" id="peso-cal" placeholder="Ex: 70" min="20" max="300" step="0.1">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="altura-cal">Altura (cm)</label>
-                        <input type="number" id="altura-cal" placeholder="Ex: 170" min="100" max="250" step="1">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="idade">Idade (anos)</label>
-                        <input type="number" id="idade" placeholder="Ex: 30" min="10" max="120" step="1">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="sexo">Sexo</label>
-                        <select id="sexo">
-                            <option value="">Selecione</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="atividade">Nível de Atividade Física</label>
-                        <select id="atividade">
-                            <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
-                            <option value="1.375">Levemente ativo (1-3 dias/semana)</option>
-                            <option value="1.55" selected>Moderadamente ativo (3-5 dias/semana)</option>
-                            <option value="1.725">Muito ativo (6-7 dias/semana)</option>
-                            <option value="1.9">Extremamente ativo (treino 2x/dia)</option>
-                        </select>
-                    </div>
-
-                    <button class="btn-calcular" onclick="calcularCalorias()">Calcular Calorias</button>
-                </div>
-
-                <div class="calc-section" data-section="personalizado">
-                    <h3>Calculadora de Custo de Refeição (Lanches)</h3>
-                    <p class="calc-descricao">Estime o gasto total do seu pedido no Breno Food.</p>
-
-                    <div class="personalizacao-info">
-                        <h4>Detalhes do Cálculo:</h4>
-                        <p>Esta ferramenta considera o preço do lanche, a quantidade, a taxa de entrega e uma gorjeta opcional.</p>
-                    </div>
 
                     <div id="calc-personalizada"> 
                         <h4>Estimativa de Gasto no Pedido</h4> 
@@ -156,37 +76,36 @@
         </div>
 
         <section class="info-educativa">
-            <h3>Entenda os Cálculos</h3>
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon">📊</div>
-                    <h4>IMC (Índice de Massa Corporal)</h4>
-                    <p>Fórmula: <strong>IMC = peso ÷ (altura)²</strong></p>
-                    <p>Medida que relaciona peso e altura para avaliar se uma pessoa está no peso ideal.</p>
-                    <ul class="info-list">
-                        <li>Abaixo de 18,5: Abaixo do peso</li>
-                        <li>18,5 - 24,9: Peso normal</li>
-                        <li>25,0 - 29,9: Sobrepeso</li>
-                        <li>30,0+: Obesidade</li>
-                    </ul>
+            <h3>Entenda o Cálculo do Seu Pedido 🍔</h3>
+            <p class="section-subtitle">Abaixo, detalhamos como o Gasto Total da sua compra é calculado.</p>
+            
+            <div class="info-grid-gasto-unico"> 
+                
+                <div class="info-card-foco">
+                    <div class="info-icon">💸</div>
+                    <h4>Estimativa de Gasto Total (Breno Food)</h4>
+                    
+                    <p><strong>Objetivo:</strong> Fornecer uma estimativa transparente do custo final do seu pedido, incluindo todas as taxas opcionais.</p>
+                    
+                    <p>A fórmula utilizada considera o preço do produto, a quantidade e quaisquer taxas adicionais:</p>
+                    
+                    <p class="formula-calculo">
+                        **Total = (Preço Unitário × Quantidade) + Taxa de Entrega + Gorjeta (em valor)**
+                    </p>
+                    
+                    <details>
+                        <summary>Como a Gorjeta é calculada?</summary>
+                        <p>A gorjeta é calculada como uma porcentagem definida por você (ex: 10%) aplicada sobre o **Subtotal dos Lanches** (Preço Unitário x Quantidade), antes da adição da taxa de entrega.</p>
+                    </details>
                 </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🔥</div>
-                    <h4>Taxa Metabólica Basal (TMB)</h4>
-                    <p>Calorias necessárias para manter funções vitais em repouso.</p>
-                    <p><strong>Homens:</strong> 88,362 + (13,397 × peso) + (4,799 × altura) - (5,677 × idade)</p>
-                    <p><strong>Mulheres:</strong> 447,593 + (9,247 × peso) + (3,098 × altura) - (4,330 × idade)</p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">💡</div>
-                    <h4>Dicas Importantes</h4>
+        
+                <div class="info-card-foco aviso-card">
+                    <div class="info-icon">⚠️</div>
+                    <h4>Atenção Importante</h4>
                     <ul class="info-list">
-                        <li>Estes cálculos são estimativas gerais</li>
-                        <li>Consulte um profissional para orientação personalizada</li>
-                        <li>Resultados variam conforme metabolismo individual</li>
-                        <li>Use como referência, não diagnóstico</li>
+                        <li>**Preços:** O preço final pode variar ligeiramente dependendo de promoções ativas ou itens adicionados/removidos no carrinho final.</li>
+                        <li>**Valores:** Use este cálculo como uma **referência** e ferramenta de planejamento, não como o valor exato final da compra.</li>
+                        <li>**Feedback:** Se notar uma grande discrepância, verifique os detalhes do seu carrinho de compras e o cupom de desconto aplicado.</li>
                     </ul>
                 </div>
             </div>

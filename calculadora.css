@@ -338,80 +338,77 @@
     color: var(--accent-color, #667eea);
 }
 
-/* Seção Informativa */
+/* Container de Informações */
 .info-educativa {
-    padding: 60px 20px;
-    background: var(--bg-secondary, #f8f9fa);
-    border-radius: 20px;
-    margin-bottom: 50px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
 }
 
-.info-educativa h3 {
+.info-educativa .section-subtitle {
     text-align: center;
-    font-size: 2em;
+    color: #6c757d; 
     margin-bottom: 40px;
-    color: var(--text-primary, #333);
 }
 
-.info-grid {
+/* NOVO GRID PARA 2 CARDS */
+.info-grid-gasto-unico {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    /* Define duas colunas de tamanho igual */
+    grid-template-columns: 1fr 1fr; 
+    gap: 25px;
+    /* Centraliza o grid */
+    justify-content: center;
 }
 
-.info-card {
-    background: var(--bg-primary, white);
-    padding: 30px;
+/* Estilo Básico do Card - FOCO */
+.info-card-foco {
+    background-color: #ffffff;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+    transition: transform 0.3s ease;
 }
 
-.info-card:hover {
-    border-color: var(--accent-color, #667eea);
+.info-card-foco:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.info-icon {
-    font-size: 3em;
-    text-align: center;
+.info-card-foco h4 {
+    color: var(--primary-color, #dc3545); /* Usando uma cor mais "food" ou sua cor primária */
+    margin-top: 0;
     margin-bottom: 15px;
 }
 
-.info-card h4 {
-    font-size: 1.3em;
-    margin-bottom: 15px;
-    color: var(--text-primary, #333);
-}
-
-.info-card p {
-    color: var(--text-secondary, #666);
-    line-height: 1.6;
-    margin-bottom: 10px;
-}
-
-.info-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-}
-
-.info-list li {
-    padding: 8px 0;
-    padding-left: 25px;
-    position: relative;
-    color: var(--text-secondary, #666);
-}
-
-.info-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--success-color, #28a745);
+.formula-calculo {
+    font-size: 1.0rem;
     font-weight: bold;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color, #dc3545);
+    margin: 20px 0;
 }
 
+/* Estilo para o Card de Aviso */
+.aviso-card {
+    background-color: #fff3cd; /* Fundo de aviso */
+    color: #856404; /* Texto de aviso */
+    border: 1px solid #ffeeba;
+}
+
+.aviso-card h4 {
+    color: #856404;
+}
+
+/* Responsividade: 1 coluna em mobile */
+@media (max-width: 768px) {
+    .info-grid-gasto-unico {
+        grid-template-columns: 1fr;
+    }
+}
 /* Histórico de Cálculos */
 .historico-calculos {
     padding: 40px;

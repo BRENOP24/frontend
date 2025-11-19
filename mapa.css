@@ -1,6 +1,5 @@
 /* === ESTILOS DO MAPA INTERATIVO === */
 
-
 /* Controles do Mapa */
 
 .banner-principal {
@@ -25,10 +24,11 @@
 }
 
 
-/* Controles do Mapa/*
+/* Controles do Mapa */
 
 .mapa-controles {
     display: flex;
+    /* Usa Flexbox para colocar os filhos (botões e select) lado a lado */
     justify-content: center;
     align-items: center;
     gap: 15px;
@@ -37,12 +37,10 @@
     border-radius: 15px;
     margin-bottom: 30px;
     flex-wrap: wrap;
+    /* Permite que os itens quebrem a linha em telas menores */
 }
 
-.controle-item {
-    display: flex;
-    align-items: center;
-}
+/* REMOVIDO: A regra .controle-item foi removida, pois a div foi excluída do HTML */
 
 
 /* Botões de Controle */
@@ -473,7 +471,8 @@
     }
     .btn-localizacao,
     .btn-rotas,
-    .btn-compartilhar {
+    .btn-compartilhar,
+    .select-tipo-mapa { /* Adicionei o select aqui para consistência em telas menores */
         padding: 10px 15px;
         font-size: 0.85em;
     }
@@ -514,12 +513,11 @@
 
 @media (max-width: 480px) {
     .mapa-controles {
+        /* Garante que os itens ocupem toda a largura e fiquem um abaixo do outro */
         flex-direction: column;
         align-items: stretch;
     }
-    .controle-item {
-        width: 100%;
-    }
+    /* Regra .controle-item removida, agora aplicamos a largura 100% diretamente nos botões e no select */
     .btn-localizacao,
     .btn-rotas,
     .btn-compartilhar,

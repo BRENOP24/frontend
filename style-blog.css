@@ -1,90 +1,74 @@
-/* === ESTILOS DO BLOG === */
 
 
-/* CONTAINER PRINCIPAL DO CABEÇALHO (CAIXA) */
 
+/* CONTAINER PRINCIPAL DO CABEÇALHO (header) */
 header {
-    /* Isso garante que o elemento de cabeçalho volte ao fluxo normal da página */
+    /* Opcional: define a cor de fundo que parece ser um gradiente na sua imagem,
+       mas vou usar o que você já tinha ou uma cor sólida para garantir a base. */
+    background: #4B0082; /* Exemplo de cor roxa/azul forte */
+    padding: 0; /* Remove padding default, vamos controlar pelo .caixa */
     position: static !important;
-    /* O !important é opcional, mas garante que essa regra prevaleça */
 }
 
+
 .caixa {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 30px 20px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Garante quebras de linha em telas pequenas */
 }
 
-nav {
-    margin-left: auto;
-    margin-right: 0
+/* AJUSTE DO TÍTULO E LOGO (Mesmo sem imagem, o H1 ainda está no fluxo) */
+header h1 {
+    font-size: 10em; /* Tamanho do seu 'Breno Food' */
+    color: #DD1010; /* Cor vermelha do 'Breno Food' */
+    margin: 0 15px 0 0; /* Espaçamento à direita da logo */
+    line-height: 1;
 }
-
-
-/* IMAGEM DA LOGO */
 
 header h1 img {
-    height: 350px;
-    /* Altura ideal para a logo (ajuste conforme o tamanho) */
+    /* REMOÇÃO DRÁSTICA: Garante que a imagem, mesmo vazia, não force altura. */
+    height: 100px; /* Altura de uma logo compacta */
     width: auto;
-    /* Remover a borda padrão do link, se houver */
-    border: none;
     display: block;
 }
 
+/* NAVEGAÇÃO (Menu) */
+nav {
+    margin-left: 0; /* Centraliza melhor o menu com a logo */
+}
 
-/* LISTA (UL) - REMOVE MARCADORES */
-
+/* LISTA (UL) - Para caber os 10 itens na mesma linha */
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    /* Mantenha para alinhar os links */
-    gap: 15px;
+    flex-wrap: nowrap; /* Tenta manter todos os links na mesma linha */
+    gap: 5px; /* Reduz MUITO o espaçamento entre os itens */
 }
 
-
-/* ITENS DA LISTA (LI) */
-
-nav ul li {
-    display: inline-block;
-    padding: 0 5px;
-    /* Ajusta o espaçamento lateral entre os botões */
-}
-
-
-/* LINKS (A) - TRANSFORMA EM "BOTÕES" CLICÁVEIS */
-
+/* LINKS (A) - Tornando o link mais compacto */
 nav ul li a {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 16px;
-    color: #dd1010;
-    /* Cor do texto padrão */
-    padding: 8px 15px;
-    /* Adiciona padding para parecer um botão */
+    font-size: 13px; /* Reduz o tamanho da fonte para liberar espaço */
+    color: #00FF00; /* Cor verde que parece na sua imagem */
+    padding: 5px 8px; /* Reduz o padding interno dos links */
     border: 1px solid transparent;
-    /* Borda transparente inicial */
     border-radius: 5px;
-    /* Cantos arredondados */
     transition: all 0.3s ease;
-    /* Animação suave */
+    white-space: nowrap; /* Impede que o texto do link quebre a linha */
 }
 
-
-/* EFEITO DE HOVER (AO PASSAR O MOUSE) */
-
+/* Efeito de hover (mantido, mas ajustado se as variáveis não estiverem definidas) */
 nav ul li a:hover {
-    color: var(--primary-color, #007bff);
-    /* Cor primária do texto no hover */
-    background-color: #f0f0f0;
-    /* Fundo levemente cinza no hover */
-    border-color: var(--primary-color, #007bff);
-    /* Borda da cor primária no hover */
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo levemente transparente */
+    border-color: #fff;
 }
 
 
@@ -656,4 +640,90 @@ main {
     .newsletter-content p {
         font-size: 1em;
     }
+}
+
+
+/* === AJUSTE DA GRADE DE ARTIGOS === */
+
+.blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.artigo-destaque {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.artigos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.artigo-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artigo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.artigo-imagem img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.artigo-conteudo {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.artigo-conteudo h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.artigo-conteudo p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    text-align: justify;
+    overflow: hidden;
+    display: -webkit-box;
+    /* Adicione a propriedade padrão (line-clamp) */
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    line-clamp: 6; /* <--- PROPRIEDADE PADRÃO ADICIONADA AQUI */
+}
+.btn-ler-mais {
+    margin-top: auto;
+    background-color: #667eea;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-ler-mais:hover {
+    background-color: #5563c1;
 }
