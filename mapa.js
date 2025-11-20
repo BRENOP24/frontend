@@ -11,7 +11,7 @@ const unidades = [{
         id: 'unidade1',
         nome: 'Unidade Tropical',
         lat: -25.4284, // Latitude - ALTERE para sua localização real
-        lng: -49.2733, // Longitude - ALTERE para sua localização real
+        lng: -53.48544, // Longitude - ALTERE para sua localização real
         endereco: 'Rua Sao Luis, 2763<br>Recanto Tropical - Cascavel/PR',
         telefone: '+5546991032063',
         horario: 'Seg-Sab: 19h às 23h | Dom: 19h-22h',
